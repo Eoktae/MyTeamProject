@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ezen.restful.mapper.PizzaMapper">
+  	<select id="get" resultType="com.ezen.restful.dto.Pizza">
+  		SELECT * FROM pizzas WHERE id = #{pk}
+  	</select>
+  	
+  	<select id="getList" resultType="com.ezen.restful.dto.Pizza">
+  		SELECT * FROM pizzas
+  	</select>
+  	
+  	<select id="getAll" resultType="com.ezen.restful.dto.Pizza">
+  		SELECT * FROM pizzas
+  	</select>
+
+	<insert id="insert" >
+   		INSERT INTO pizzas VALUES (PIZZA_ID_SEQ.nextval, #{name}, #{price}, #{calories})
+  	</insert>
+
+    <update id="updateView">
+		UPDATE pizzas
+		SET calories = calories +1
+		WHERE id = #{pk}
+	</update>
+	
+	<update id="update">
+		UPDATE pizzas
+		SET 
+		name = #{name},
+		price = #{price},
+		calories = #{calories}
+		WHERE 
+		id = #{id}
+	</update>
+</mapper>
